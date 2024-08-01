@@ -1,0 +1,30 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boat Booking</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'bookings/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <img class="imgn" src="{% static 'bookings/images/key.jpg' %}" alt="Key">
+        <h1>Boat Booking</h1>
+        <nav>
+            <ul>
+                <li><a href="/bookings/home">Home</a></li>
+                <li><a href="/bookings/boats">Boats</a></li>
+                <li><a href="/profile">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content%}
+        {% endblock%}
+    </main>
+    <footer>
+        <p>&copy; 2024 Boat Booking System</p>
+    </footer>
+</body>
+</html>

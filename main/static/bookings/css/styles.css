@@ -1,0 +1,177 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+h2 {
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 1rem;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: absolute;
+    width: 100%;
+    bottom: 100;
+}
+
+.imgn {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 146px;
+    object-fit: cover;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+.tour-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(33.333% - 40px); /* 3 cards per row with space between */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin: 10px;
+    background-color: #fff;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.tour-card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}
+.tour-card img {
+    width: 100%;
+    height: auto;
+}
+.tour-content {
+    padding: 16px;
+}
+.tour-title {
+    font-size: 1.5em;
+    margin: 0;
+    color: #000000;
+}
+.tour-status {
+    font-size: 0.9em;
+    color: #000000;
+}
+.tour-description {
+    margin: 10px 0;
+    color: #000000;
+}
+.tour-info {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #000000;
+}
+
+.order-button {
+    background-color: #455248; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 15px 30px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+}
+
+.order-button:hover {
+    background-color: #62986d; 
+}
+
+.order-button:active {
+    transform: scale(0.98); 
+}
+
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination .step-links {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #333;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #f0f0f0;
+}
+
+.pagination .current {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ddd;
+}
+
+
+@media (max-width: 1024px) {
+    .tour-card {
+        width: calc(50% - 40px); /* 2 cards per row */
+    }
+}
+@media (max-width: 768px) {
+    .tour-card {
+        width: calc(100% - 40px); /* 1 card per row */
+    }
+    .imgn {
+        display: none;
+    }
+}

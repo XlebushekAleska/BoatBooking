@@ -1,0 +1,9 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+    <h2>{{ boat.boat_name }}</h2>
+    <p>Status: {{ boat.status }}</p>
+    <p>Current load: {{ boat.current_load }}</p>
+    <p>Capacity: {{ boat.boat_capacity }}</p>
+
+{% endblock %}

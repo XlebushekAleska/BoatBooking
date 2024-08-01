@@ -1,0 +1,40 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+<h2>Available Boats</h2>
+<div class="container">
+    {% for boat in page_obj %}
+    <div class="tour-card">
+        <div class="tour-content">
+            <a href="{% url 'tour_detail' boat.id %}" target="_blank">
+            <h2 class="tour-title">{{ boat.boat_name }}</h2></a>
+            <p class="tour-status">Статус: {{ boat.status }}</p>
+            <p class="tour-description">{{ boat.description }}</p>
+            <div class="tour-info">
+                <p>Время: {{ boat.time }}</p>
+                <p>Тариф: {{ boat.capacity }}</p>
+            </div>
+            <button class="order-button">Order</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

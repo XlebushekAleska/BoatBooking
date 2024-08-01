@@ -1,0 +1,53 @@
+{% extends 'bookings/base.html' %}
+
+{% block content %}
+<h2>Available Trips</h2>
+<form id="booking-form">
+    <label for="start-date">Start Date:</label>
+    <input type="date" id="start-date" name="start-date" required>
+
+    <label for="end-date">End Date:</label>
+    <input type="date" id="end-date" name="end-date" required>
+
+    <label for="num-people">Number of People:</label>
+    <input type="number" id="num-people" name="num-people" required>
+
+    <button type="submit">Search</button>
+</form>
+
+<div class="container">
+    {% for tour in page_obj %}
+    <div class="tour-card">
+        <div class="tour-content">
+            <a href="{% url 'tour_detail' tour.id %}" target="_blank">
+            <h2 class="tour-title">{{ tour.creating_date }}</h2></a>
+            <p class="tour-status">Статус: {{ tour.status }}</p>
+            <p class="tour-description">{{ tour.description }}</p>
+            <div class="tour-info">
+                <p>Время: {{ tour.time }}</p>
+                <p>Тариф: {{ tour.capacity }}</p>
+            </div>
+            <button class="order-button">Order</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

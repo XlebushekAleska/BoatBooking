@@ -1,6 +1,9 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+# from rest_framework import serializers
 
 
 class Boat(models.Model):
@@ -18,9 +21,9 @@ class Tariff(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     boat = models.ForeignKey(Boat, on_delete=models.PROTECT, help_text="id лодки")
 
-    FIRST = '3D'
-    SECOND = '5D'
-    THIRD = '7D'
+    FIRST = 3
+    SECOND = 5
+    THIRD = 7
     DAYS_AMOUNTS = [
         (FIRST, '3 Дня'),
         (SECOND, '5 Дней'),
@@ -39,10 +42,33 @@ class Booking(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     boat = models.ForeignKey(Boat, on_delete=models.PROTECT, help_text="id лодки")
     tariff = models.ForeignKey(Tariff, on_delete=models.PROTECT, help_text="id тарифа")
-    tickets_amount = models.PositiveIntegerField(blank=False, null=False, default=1)
+    tickets_amount = models.PositiveIntegerField(
+        blank=False,
+        null=False,
+        default=1,
+        # validators=[
+        #     MinValueValidator(1),
+        #     MaxValueValidator(self.seats_amount)
+        # ]
+    )
+
     first_date = models.DateTimeField(help_text="начало путешествия")
     last_date = models.DateTimeField(help_text="конец путешествия")
     status = models.CharField(null=True, max_length=50, help_text="статус")
+
+    def seats_amount(self):
+        b_id = Boat.objects.get(self.boat)
+        return ()
+
+    # class MultipleOf:
+    #     def __init__(self, base):
+    #         self.base = base
+    #
+    #     def __call__(self, value):
+    #         if value % self.base != 0:
+    #             message = 'This field must be a multiple of %d.' % self.base
+    #             raise serializers.ValidationError(message)
+    #
 
     def __str__(self):
         return f'{self.user.username if self.user else "Unknown"} - {self.boat.boat_name} - {self.status}'
